@@ -1,11 +1,123 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Мой блог</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блог Полешука в Мире ИБ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        /* Навигация */
+        .navbar {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            font-weight: bold;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: black;
+        }
+        .divider {
+            width: 100%;
+            height: 2px;
+            background-color: black;
+            margin-top: 10px;
+        }
+        /* Основной контент */
+        .content {
+            display: flex;
+            width: 80%;
+            padding-top: 20px;
+        }
+        /* Левый блок */
+        .left-section {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .photo-placeholder {
+            width: 100%;
+            max-width: 200px;
+            height: 200px;
+            background-color: lightgray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        /* Правый блок */
+        .right-section {
+            width: 70%;
+            padding-left: 20px;
+        }
+        .post {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .post h3 {
+            margin: 0;
+        }
+        .post-tags {
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-  <h1>Привет, мир!</h1>
-  <p>Это моя главная страница блога.</p>
+
+    <!-- Навигация -->
+    <div class="navbar">
+        <a href="#">Главная</a>
+        <a href="#">Блог</a>
+        <a href="#">Про меня</a>
+    </div>
+    <div class="divider"></div>
+
+    <!-- Основной контент -->
+    <div class="content">
+        <!-- Левый блок -->
+        <div class="left-section">
+            <div class="photo-placeholder">Фото</div>
+            <div class="social-links">
+                <p>Мой телеграм</p>
+                <p>Linkedin</p>
+            </div>
+        </div>
+
+        <!-- Правый блок -->
+        <div class="right-section">
+            <h2>Блог Полешука в Мире ИБ</h2>
+            <div class="post">
+                <span>10 окт 2024</span>
+                <h3>Название статьи</h3>
+                <span class="post-tags">#хэштег #хэштег</span>
+            </div>
+            <div class="post">
+                <span>10 окт 2024</span>
+                <h3>Название статьи</h3>
+                <span class="post-tags">#хэштег #хэштег</span>
+            </div>
+            <div class="post">
+                <span>10 окт 2024</span>
+                <h3>Название статьи</h3>
+                <span class="post-tags">#хэштег #хэштег</span>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

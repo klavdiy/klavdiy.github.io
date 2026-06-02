@@ -1,0 +1,35 @@
+name: SDOM security check
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  sdom:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update SDOM config
+        run: bash ./security/sdom/sdom-configure.sh
+
+      - name: Run SDOM check
+        run: bash ./security/sdom/sdom-check.sh
+
+      - name: Upload SDOM report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sdom-report
+          path: security/sdom/last-report.txt
+          if-no-files-found: ignore

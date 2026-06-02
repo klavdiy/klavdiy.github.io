@@ -1,0 +1,49 @@
+.zone-divider {
+  border: 0;
+  height: 1px;
+  margin: 0 30px 1.5rem;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.zone-divider--compact {
+  margin-top: 0.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.theme--dark .zone-divider {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.archive__month {
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.6;
+  margin: 0.75rem 0 0.35rem;
+  color: #4b5563;
+}
+
+.theme--dark .archive__month {
+  color: #9ca3af;
+}
+
+.archive__year + .zone-divider {
+  margin-top: 2rem;
+}
+
+.post__content a {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.post__content a:hover {
+  color: #1d4ed8;
+}
+
+.theme--dark .post__content a {
+  color: #60a5fa;
+}
+
+.theme--dark .post__content a:hover {
+  color: #93c5fd;
+}

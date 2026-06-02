@@ -1,0 +1,54 @@
+{{ define "main" }}
+  {{ $monthsRu := slice "январь" "февраль" "март" "апрель" "май" "июнь" "июль" "август" "сентябрь" "октябрь" "ноябрь" "декабрь" }}
+  <div
+    class="archive {{ with .Site.Params.doNotLoadAnimations }}
+      .
+    {{ else }}
+      animated fadeInDown
+    {{ end }}"
+  >
+    {{ $years := .Data.Pages.GroupByDate "2006" }}
+    {{ range $i, $year := $years }}
+      <section class="archive__year">
+        <div class="archive__heading">{{ $year.Key }}</div>
+        <hr class="zone-divider zone-divider--compact" aria-hidden="true" />
+
+        {{ range $year.Pages.GroupByDate "2006-01" }}
+          {{ $parts := split .Key "-" }}
+          {{ $monthNum := int (index $parts 1) }}
+          <div class="archive__month">{{ index $monthsRu (sub $monthNum 1) | title }}</div>
+          <ul class="archive__list">
+            {{ range .Pages }}
+              <li class="archive__list-item">
+                {{ if (eq $.Site.Params.disableArchiveTitleStyling true) }}
+                  <a class="archive__list-title" href="{{ .RelPermalink }}" title="{{ .Title }}">{{ .Title }}</a>
+                {{ else }}
+                  <a class="archive__list-title" href="{{ .RelPermalink }}" title="{{ .Title }}">{{ upper .Title }}</a>
+                {{ end }}
+                <div class="archive__list-date">
+                  {{ if isset $.Site.Params "listdateformat" }}
+                    {{ if $.Site.Params.localizedDates }}
+                      {{ time.Format $.Site.Params.listDateFormat .Date }}
+                    {{ else }}
+                      {{ .Date.Format $.Site.Params.listDateFormat }}
+                    {{ end }}
+                  {{ else }}
+                    {{ if $.Site.Params.localizedDates }}
+                      {{ time.Format "Jan 2" .Date }}
+                    {{ else }}
+                      {{ .Date.Format "Jan 2" }}
+                    {{ end }}
+                  {{ end }}
+                </div>
+              </li>
+            {{ end }}
+          </ul>
+        {{ end }}
+      </section>
+
+      {{ if lt (add $i 1) (len $years) }}
+        <hr class="zone-divider" aria-hidden="true" />
+      {{ end }}
+    {{ end }}
+  </div>
+{{ end }}

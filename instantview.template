@@ -1,0 +1,55 @@
+~version: "2.1"
+
+?true
+site_name: "Блог Клавдия"
+
+?path: /post/.+
+?exists: //div[contains(@class,'post__content')]/h1
+!path_not: /post/?$
+
+title: //div[contains(@class,'post__content')]/h1
+subtitle: //meta[@property='og:description']/@content
+author: //meta[@name='author']/@content
+published: //meta[@property='article:published_time']/@content
+channel: @cyberpoleshuk
+
+cover: //img[contains(@class,'post__thumbnail')]
+cover: //meta[@property='og:image']/@content
+cover: //div[contains(@class,'post__content')]//img[1]
+
+body: //div[contains(@class,'post__content')]
+
+@remove: //div[contains(@class,'post__content')]/h1
+@remove: //div[contains(@class,'post__content')]/ul[contains(@class,'post__meta')]
+@remove: //div[contains(@class,'post__content')]//*[contains(@class,'related')]
+@remove: //div[contains(@class,'post__content')]//*[@id='comment']
+@remove: //div[contains(@class,'post__content')]//nav
+
+@remove: //aside
+@remove: //header[contains(@class,'header')]
+@remove: //footer
+@remove: //nav
+@remove: //div[contains(@class,'post__footer')]
+@remove: //div[contains(@class,'post__thumbnail-wrapper')]
+@remove: //div[contains(@class,'sidebar')]
+@remove: //div[contains(@class,'wrapper__sidebar')]
+
+?path: /tags/.+
+description: //meta[@property='og:description']/@content
+image_url: https://klavdiy.github.io/images/profile.png
+
+?path: /categories/.+
+description: //meta[@property='og:description']/@content
+image_url: https://klavdiy.github.io/images/profile.png
+
+?path: /post/?$
+description: "Записи блога о кибербезопасности"
+image_url: https://klavdiy.github.io/images/profile.png
+
+?path: /about/?$
+description: //meta[@name='description']/@content
+image_url: https://klavdiy.github.io/images/profile.png
+
+?path: ^/?$
+description: //meta[@name='description']/@content
+image_url: https://klavdiy.github.io/images/profile.png

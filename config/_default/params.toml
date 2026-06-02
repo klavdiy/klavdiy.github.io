@@ -1,0 +1,37 @@
+title = "Блог Клавдия"
+author = "Klavdiy"
+copyright = "Klavdiy Laptenok, {{ YEAR }}"
+description = """
+Консультант по кибербезопасности. Пессимист и технократ в ИБ — или я прав, или приятно удивлен. Этический гедонист с сарказмом по жизни.
+"""
+profilePicture = "images/profile.png"
+keywords = "информационная безопасность, кибербезопасность, защита данных, утечки данных, кибератаки, безопасность бизнеса, ОАЦ, НЦЗПД, Беларусь, cybersecurity, information security, data protection, data breach, cyber threats, Belarus, cybersecurity blog"
+customCss = ["css/custom.css"]
+customJs = []
+mainSections = ["post"]
+doNotLoadAnimations = false
+singleDateFormat = "2.01.2006"
+indexDateFormat = "2.01.2006"
+listDateFormat = "2.01.2006"
+reversepagetitle = true
+disableTitleCapitalization = true
+disableArchiveTitleStyling = true
+
+yandexMetrikaId = 109392727
+
+[[socialIcons]]
+icon = "fa-brands fa-github"
+title = "GitHub"
+url = "https://github.com/klavdiy"
+
+telegramChannel = "cyberpoleshuk"
+
+[[socialIcons]]
+icon = "fa-brands fa-telegram"
+title = "Telegram"
+url = "https://t.me/cyberpoleshuk"
+
+[[socialIcons]]
+icon = "fa-brands fa-linkedin"
+title = "LinkedIn"
+url = "https://www.linkedin.com/in/klavdiy/"

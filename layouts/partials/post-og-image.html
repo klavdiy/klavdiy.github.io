@@ -1,0 +1,25 @@
+{{- if not (and .IsPage (eq .Section "post")) -}}
+  {{- return -}}
+{{- end -}}
+
+{{- $image := "" -}}
+{{- if .Params.thumbnail -}}
+  {{- $image = .Params.thumbnail | absURL -}}
+{{- else if .Params.images -}}
+  {{- $image = index .Params.images 0 | absURL -}}
+{{- else if .File -}}
+  {{- $raw := readFile .File.Filename -}}
+  {{- $body := replaceRE `(?s)^---\s*.*?\s*---\s*` "" $raw 1 -}}
+  {{- with findRESubmatch `!\[[^\]]*\]\(([^)]+)\)` $body 1 -}}
+    {{- $match := index . 0 -}}
+    {{- $image = index $match 1 | absURL -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if not $image -}}
+  {{- $image = "images/profile.png" | absURL -}}
+{{- end -}}
+
+<meta property="og:image" content="{{ $image }}" />
+<meta property="og:image:secure_url" content="{{ $image }}" />
+<meta name="twitter:image" content="{{ $image }}" />

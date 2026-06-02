@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-06-02T15:16:06Z",
+  "project": "klavdiy.github.io",
+  "scan": {
+    "git_tracked_only": true,
+    "exclude_paths": [
+      ".github/workflows/",
+      "assets/css/",
+      "config/_default/",
+      "content/post/",
+      "layouts/_default/",
+      "layouts/partials/",
+      "public/",
+      "resources/_gen/",
+      "security/sdom/",
+      "static/admin/",
+      "static/images/",
+      "themes/anatole/node_modules/",
+      "themes/anatole/package-lock.json"
+    ],
+    "exclude_extensions": [
+      ".gif",
+      ".ico",
+      ".jpeg",
+      ".jpg",
+      ".png",
+      ".svg",
+      ".woff",
+      ".woff2"
+    ],
+    "tracked_file_count": 49
+  },
+  "forbidden_tracked_files": [
+    ".env",
+    ".env.local",
+    ".env.production",
+    "secrets.json",
+    "credentials.json",
+    "static/admin/config.yml",
+    "id_rsa",
+    "*.pem",
+    "*.p12",
+    "*.pfx",
+    "*.key"
+  ],
+  "required_gitignore_entries": [
+    ".env",
+    ".env.*",
+    "*.pem",
+    "*.key",
+    "secrets/",
+    ".hugo_build.lock"
+  ],
+  "secret_patterns": [
+    {
+      "id": "github_pat",
+      "severity": "critical",
+      "pattern": "ghp_[A-Za-z0-9_]{20,}",
+      "description": "GitHub personal access token"
+    },
+    {
+      "id": "github_oauth",
+      "severity": "critical",
+      "pattern": "gho_[A-Za-z0-9_]{20,}",
+      "description": "GitHub OAuth token"
+    },
+    {
+      "id": "github_fine_pat",
+      "severity": "critical",
+      "pattern": "github_pat_[A-Za-z0-9_]{20,}",
+      "description": "GitHub fine-grained PAT"
+    },
+    {
+      "id": "aws_key",
+      "severity": "critical",
+      "pattern": "AKIA[0-9A-Z]{16}",
+      "description": "AWS access key id"
+    },
+    {
+      "id": "private_key_block",
+      "severity": "critical",
+      "pattern": "BEGIN (RSA |OPENSSH |EC )?PRIVATE KEY",
+      "description": "Private key material"
+    },
+    {
+      "id": "client_secret_assignment",
+      "severity": "high",
+      "pattern": "(client[_-]?secret|CLIENT_SECRET)\\s*[:=]\\s*['\\\"]?[A-Za-z0-9_\\-]{16,}",
+      "description": "Hardcoded client secret"
+    }
+  ],
+  "allowlist_patterns": [
+    {
+      "id": "oauth_placeholder",
+      "pattern": "YOUR-OAUTH-WORKER|YOUR_GITHUB_USER",
+      "reason": "Example template placeholders only"
+    },
+    {
+      "id": "gitalk_template",
+      "pattern": "clientSecret: '\\{\\{",
+      "reason": "Hugo template placeholder in theme"
+    }
+  ],
+  "warn_patterns": [
+    {
+      "id": "goldmark_unsafe",
+      "severity": "medium",
+      "files": [
+        "config/_default/hugo.toml"
+      ],
+      "pattern": "unsafe\\s*=\\s*true",
+      "description": "Hugo renders raw HTML from markdown"
+    }
+  ],
+  "public_identifiers_ok": [
+    {
+      "id": "yandex_metrika",
+      "file": "config/_default/params.toml",
+      "pattern": "yandexMetrikaId",
+      "reason": "Public analytics counter id, visible in page source"
+    },
+    {
+      "id": "github_client_id_in_url",
+      "reason": "OAuth client_id is public in authorize URLs; secret must stay in Worker only"
+    }
+  ],
+  "admin_security": {
+    "config_file": "static/admin/config.yml",
+    "example_file": "static/admin/config.yml.example",
+    "forbidden_keys": [
+      "local_backend: true"
+    ]
+  }
+}

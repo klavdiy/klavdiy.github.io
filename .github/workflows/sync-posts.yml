@@ -1,0 +1,68 @@
+name: Sync posts from private repo
+
+on:
+  schedule:
+    - cron: "15 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout public site
+        uses: actions/checkout@v4
+        with:
+          path: public
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout private posts
+        uses: actions/checkout@v4
+        with:
+          repository: klavdiy/blog-post
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: private
+
+      - name: Merge ready posts into public
+        run: python3 scripts/sync-from-private.py
+
+      - name: Commit public site
+        working-directory: public
+        run: |
+          if git diff --quiet; then
+            echo "No public changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/post static/images
+          git commit -m "Обновление"
+          git push
+
+      - name: Remove published posts from private
+        working-directory: private
+        env:
+          PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+        run: |
+          if [[ ! -f /tmp/migrated-posts.txt ]] || [[ ! -s /tmp/migrated-posts.txt ]]; then
+            exit 0
+          fi
+          changed=0
+          while IFS= read -r rel; do
+            [[ -z "$rel" ]] && continue
+            if [[ -f "$rel" ]]; then
+              rm "$rel"
+              changed=1
+            fi
+          done < /tmp/migrated-posts.txt
+          if [[ "$changed" -eq 0 ]]; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${PRIVATE_REPO_TOKEN}@github.com/klavdiy/blog-post.git"
+          git add -A
+          git commit -m "Обновление"
+          git push

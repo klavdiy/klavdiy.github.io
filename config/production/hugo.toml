@@ -1,0 +1,3 @@
+# Production: only posts with date <= now and draft = false go live.
+buildDrafts = false
+buildFuture = false

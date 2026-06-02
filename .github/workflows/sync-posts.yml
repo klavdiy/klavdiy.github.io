@@ -2,7 +2,7 @@ name: Sync posts from private repo
 
 on:
   schedule:
-    - cron: "15 4 * * *"
+    - cron: "0 4 * * *"
   workflow_dispatch:
 
 permissions:
@@ -26,7 +26,7 @@ jobs:
           path: private
 
       - name: Merge ready posts into public
-        run: python3 scripts/sync-from-private.py
+        run: python3 public/scripts/sync-from-private.py
 
       - name: Commit public site
         working-directory: public

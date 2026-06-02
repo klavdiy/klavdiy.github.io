@@ -17,9 +17,6 @@ secrets.json
 id_rsa
 id_rsa.pub
 
-# SDOM generated report (CI artifact)
-/security/sdom/last-report.txt
-
 # Cloudflare Worker (local only — deploy via Cloudflare dashboard)
 /workers/
 

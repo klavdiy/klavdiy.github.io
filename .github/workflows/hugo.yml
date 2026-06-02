@@ -43,11 +43,14 @@ jobs:
           tar -xf dart-sass.tar.gz
           echo "$GITHUB_WORKSPACE/dart-sass" >> "$GITHUB_PATH"
 
-      - name: Generate Decap admin config
+      - name: Prepare admin config
         env:
           DECAP_OAUTH_BASE_URL: ${{ secrets.DECAP_OAUTH_BASE_URL }}
           DECAP_GITHUB_REPO: ${{ secrets.DECAP_GITHUB_REPO }}
-        run: bash ./scripts/generate-admin-config.sh
+        run: |
+          cp static/admin/config.yml.example static/admin/config.yml
+          sed -i "s|YOUR_GITHUB_USER/YOUR_REPO|${DECAP_GITHUB_REPO}|g" static/admin/config.yml
+          sed -i "s|https://YOUR-OAUTH-WORKER.workers.dev|${DECAP_OAUTH_BASE_URL}|g" static/admin/config.yml
 
       - name: Build
         env:

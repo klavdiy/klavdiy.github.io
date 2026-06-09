@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="klavdiy">
-  <rect width="200" height="200" rx="100" fill="#2d3748"/>
-  <text x="100" y="118" text-anchor="middle" font-family="system-ui, sans-serif" font-size="88" font-weight="600" fill="#f7fafc">k</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="klavdiy" role="img" viewBox="0 0 200 200"><rect width="200" height="200" fill="#2d3748" rx="100"/><text x="100" y="118" fill="#f7fafc" font-family="system-ui, sans-serif" font-size="88" font-weight="600" text-anchor="middle">k</text></svg>
